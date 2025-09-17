@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Recolectable
+  - Transportador
+  - Reiniciador
+  - Desplazador
   layers:
   - Default
   - TransparentFX

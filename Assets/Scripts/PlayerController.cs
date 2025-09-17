@@ -6,21 +6,22 @@ using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
-    public Transform particulas;
-    private ParticleSystem systemParticulas;
+    // public Transform particulas;
+    // private ParticleSystem systemParticulas;
+    public GameObject cuboVerde;
     private Vector3 posicion;
     public float speed;
     private Rigidbody rb;
-    private int contador;
-    public TextMeshProUGUI textoContador;
-    private AudioSource audioRecoleccion;
+    // private int contador;
+    // public TextMeshProUGUI textoContador;
+    // private AudioSource audioRecoleccion;
 
     void Start()
     {
-        audioRecoleccion = GetComponent<AudioSource>();
+        // audioRecoleccion = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody>();
-        systemParticulas = particulas.GetComponent<ParticleSystem>();
-        systemParticulas.Stop();
+        // systemParticulas = particulas.GetComponent<ParticleSystem>();
+        // systemParticulas.Stop();
     }
 
     // Update is called once per frame
@@ -46,26 +47,37 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Recolectable"))
+        if (other.gameObject.CompareTag("Transportador"))
         {
-            audioRecoleccion.Play();
-            contador += 1;
-            posicion = other.gameObject.transform.position;
-            particulas.position = posicion;
-            systemParticulas = particulas.GetComponent<ParticleSystem>();
+            transform.position = cuboVerde.transform.position;
+            // audioRecoleccion.Play();
+            // contador += 1;
+            // posicion = other.gameObject.transform.position;
+            // particulas.position = posicion;
+            // systemParticulas = particulas.GetComponent<ParticleSystem>();
 
-            systemParticulas.Play();
-            other.gameObject.SetActive(false);
-            textoContador.text = "Objetos recolectados: " + contador.ToString();
-            if (contador == 12)
-            {
-                Debug.Log(contador);
-                SceneManager.LoadScene(1);
-            }
+            // systemParticulas.Play();
+            // other.gameObject.SetActive(false);
+            // textoContador.text = "Objetos recolectados: " + contador.ToString();
+            // if (contador == 12)
+            // {
+            //     Debug.Log(contador);
+            //     SceneManager.LoadScene(1);
+            // }
+        }
+        else if (other.gameObject.CompareTag("Reiniciador"))
+        {
+            transform.position = new Vector3(0, 15, 0);
+        }
+        else if (other.gameObject.CompareTag("Desplazador"))
+        {
+            posicion = other.gameObject.transform.position;
+            Vector3 suma = new Vector3(-1, 0, 0);
+            other.gameObject.transform.position = posicion + suma;
         }
         else
         {
-
+            
         }
         
     }
