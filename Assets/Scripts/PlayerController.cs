@@ -6,22 +6,14 @@ using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
-    // public Transform particulas;
-    // private ParticleSystem systemParticulas;
     public GameObject cuboVerde;
     private Vector3 posicion;
     public float speed;
     private Rigidbody rb;
-    // private int contador;
-    // public TextMeshProUGUI textoContador;
-    // private AudioSource audioRecoleccion;
 
     void Start()
     {
-        // audioRecoleccion = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody>();
-        // systemParticulas = particulas.GetComponent<ParticleSystem>();
-        // systemParticulas.Stop();
     }
 
     // Update is called once per frame
@@ -34,12 +26,7 @@ public class PlayerController : MonoBehaviour
     {
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
-        // float moveJump = Input.GetAxis("Jump");
-        // float high = 0;
-        // if(moveJump) {
-        //     high = 5;
-        // }
-        // Debug.Log(moveJump);
+
         Vector3 movimiento = new Vector3(moveHorizontal * speed, 0.0f, moveVertical * speed);
 
         rb.AddForce(movimiento);
@@ -50,20 +37,6 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("Transportador"))
         {
             transform.position = cuboVerde.transform.position;
-            // audioRecoleccion.Play();
-            // contador += 1;
-            // posicion = other.gameObject.transform.position;
-            // particulas.position = posicion;
-            // systemParticulas = particulas.GetComponent<ParticleSystem>();
-
-            // systemParticulas.Play();
-            // other.gameObject.SetActive(false);
-            // textoContador.text = "Objetos recolectados: " + contador.ToString();
-            // if (contador == 12)
-            // {
-            //     Debug.Log(contador);
-            //     SceneManager.LoadScene(1);
-            // }
         }
         else if (other.gameObject.CompareTag("Reiniciador"))
         {
